@@ -6,6 +6,9 @@
  */
 import 'babel-polyfill';
 
+// It is needed to load the favicon this way to add it to the build process
+import 'file?name=[name].[ext]!./favicon.ico';
+
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -19,10 +22,14 @@ import 'sanitize.css/sanitize.css';
 const initialState = {};
 const store = configureStore(initialState);
 
+import { VideoSelector } from 'components/videoSelector';
+import { VideoPlayer } from 'components/videoPlayer';
+
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      Coucou
+      <VideoSelector />
+      <VideoPlayer />
     </div>
   </Provider>,
   document.getElementById('app')

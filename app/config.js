@@ -1,3 +1,3 @@
 export default {
-  APIUrl: 'http://api.new.livestream.com'
-}
+  APIUrl: 'http://api.new.livestream.com',
+};
