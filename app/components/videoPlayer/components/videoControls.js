@@ -4,20 +4,33 @@ import styles from '../styles.css';
 
 import PlayIcon from '../assets/play-icon.svg';
 import PauseIcon from '../assets/pause-icon.svg';
+import FullscreenIcon from '../assets/fullscreen-icon.svg';
+import ExitFullscreenIcon from '../assets/exit-fullscreen-icon.svg';
 
 export class VideoControls extends React.Component {
 
   static propTypes = {
     video: PropTypes.object,
     hls: PropTypes.object,
+    onToggleFullscreen: PropTypes.func,
+  }
+
+  componentDidMount() {
+    if (this.props.video) {
+      this.attachVideo();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.video !== nextProps.video && nextProps.video) {
-      nextProps.video.addEventListener('progress', () => this.forceUpdate());
-      nextProps.video.addEventListener('pause', () => this.forceUpdate());
-      nextProps.video.addEventListener('play', () => this.forceUpdate());
+      this.attachVideo(nextProps.video);
     }
+  }
+
+  attachVideo = (video = this.props.video) => {
+    video.addEventListener('progress', () => this.forceUpdate());
+    video.addEventListener('pause', () => this.forceUpdate());
+    video.addEventListener('play', () => this.forceUpdate());
   }
 
   changeLevel = (level) => {
@@ -32,7 +45,6 @@ export class VideoControls extends React.Component {
     }
   }
 
-
   render() {
     if (!this.props.hls) {
       return false;
@@ -45,16 +57,17 @@ export class VideoControls extends React.Component {
 
     // Choosing the right icon depending on the state of the video
     const PlayPauseIcon = this.props.video.paused ? PlayIcon : PauseIcon;
+    const FullscreenToggleButton = document.fullscreenElement ? ExitFullscreenIcon : FullscreenIcon;
 
     return (
       <div className={styles.videoControls}>
-        <div className={styles.playPauseContainer}>
-          <PlayPauseIcon className={styles.controlsButton} onClick={this.togglePause} />
-        </div>
+        <PlayPauseIcon className={styles.controlsButton} onClick={this.togglePause} />
+        <div className={styles.spacer} />
         <div className={styles.levels}>
           <button className={styles.level} onClick={() => this.changeLevel(-1)}>Auto</button>
           {levels}
         </div>
+        <FullscreenToggleButton className={styles.controlsButton} onClick={this.props.onToggleFullscreen} />
       </div>
     );
   }

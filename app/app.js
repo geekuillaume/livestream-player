@@ -9,6 +9,9 @@ import 'babel-polyfill';
 // It is needed to load the favicon this way to add it to the build process
 import 'file?name=[name].[ext]!./favicon.ico';
 
+// Used for the fullscreen feature of the player
+import 'fullscreen-api-polyfill';
+
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom';

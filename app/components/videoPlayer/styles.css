@@ -1,3 +1,39 @@
 .container {
   border: 1px solid black;
 }
+.videoContainer {
+  width: 100%;
+  position: relative;
+}
+.videoContainer video {
+  width: 100%;
+}
+.videoControls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background-image: linear-gradient(0deg, rgba(0,0,0,.5), transparent 90%);
+  padding: 10px 20px;
+}
+.controlsButton {
+  width: 25px;
+  height: 25px;
+  fill: white; /* For SVG icons */
+  cursor: pointer;
+}
+.spacer {
+  flex: 1;
+}
+.fullscreenEnabled {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
