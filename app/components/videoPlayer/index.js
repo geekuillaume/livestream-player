@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Hls from 'hls.js';
 
+import { VideoControls } from './components/videoControls';
 import styles from './styles.css';
 
 @connect((state) => ({
@@ -35,13 +36,8 @@ export class VideoPlayer extends React.Component {
     this.hls.on(Hls.Events.MANIFEST_PARSED, this.onManifestParsed);
   }
 
-  onManifestParsed = (event, data) => {
-    this.setState({ levels: data.levels });
+  onManifestParsed = () => {
     this.refs.video.play();
-  }
-
-  changeLevel = (level) => {
-    this.hls.nextLevel = level;
   }
 
   render() {
@@ -49,17 +45,12 @@ export class VideoPlayer extends React.Component {
       return <div className={styles.notSupported}>HLS is not supported</div>;
     }
 
-    const levels = this.state.levels.map((level, i) => (
-      <button className={styles.level} onClick={() => this.changeLevel(i)} key={i}>{level.width} x {level.height}</button>
-    ));
-
     return (
       <div className={styles.container}>
-        <div className={styles.levels}>
-          <button className={styles.level} onClick={() => this.changeLevel(-1)}>Auto</button>
-          {levels}
+        <div className={styles.videoContainer}>
+          <video ref="video" />
+          <VideoControls video={this.refs.video} hls={this.hls} />
         </div>
-        <video ref="video" controls />
       </div>
     );
   }
