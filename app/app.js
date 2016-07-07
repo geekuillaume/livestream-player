@@ -22,13 +22,13 @@ import 'sanitize.css/sanitize.css';
 const initialState = {};
 const store = configureStore(initialState);
 
-import { VideoSelector } from 'components/videoSelector';
+import { Selector } from 'components/selector';
 import { VideoPlayer } from 'components/videoPlayer';
 
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <VideoSelector />
+      <Selector />
       <VideoPlayer />
     </div>
   </Provider>,
@@ -38,5 +38,5 @@ ReactDOM.render(
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
 // we do not want it installed
-import { install } from 'offline-plugin/runtime';
-install();
+// import { install } from 'offline-plugin/runtime';
+// install();

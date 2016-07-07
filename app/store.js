@@ -2,9 +2,8 @@
  * Create the store with asynchronously loaded reducers
  */
 
-import { createStore, applyMiddleware, compose } from 'redux';
-import { fromJS } from 'immutable';
-import { combineReducers } from 'redux-immutable';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+// import { fromJS } from 'immutable';
 import promiseMiddleware from 'redux-promise-middleware';
 
 import reducers from './redux/reducers';
@@ -25,11 +24,9 @@ export default function configureStore(initialState = {}) {
 
   const store = createStore(
     combineReducers(reducers),
-    fromJS(initialState),
+    initialState,
     compose(...enhancers)
   );
 
-  // Initialize it with no other reducers
-  store.asyncReducers = {};
   return store;
 }
