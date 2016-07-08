@@ -4,6 +4,7 @@ import styles from '../styles.css';
 
 import { SeekBar } from './seekbar';
 import { VideoSettings } from './videoSettings';
+import { VolumeControl } from './volumeControl';
 
 import PlayIcon from '../assets/play-icon.svg';
 import PauseIcon from '../assets/pause-icon.svg';
@@ -57,6 +58,7 @@ export class VideoControls extends React.Component {
       <div className={styles.videoControls}>
         <PlayPauseIcon className={styles.controlsButton} onClick={this.togglePause} />
         <SeekBar video={this.props.video} />
+        <VolumeControl video={this.props.video} />
         <VideoSettings hls={this.props.hls} />
         <FullscreenToggleButton className={styles.controlsButton} onClick={this.props.onToggleFullscreen} />
       </div>

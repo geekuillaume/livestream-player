@@ -134,6 +134,7 @@
     "immutable": "3.8.1",
     "ip": "1.1.2",
     "minimist": "1.2.0",
+    "rc-slider": "3.7.3",
     "react": "15.1.0",
     "react-dom": "15.1.0",
     "react-draggable": "2.1.2",
