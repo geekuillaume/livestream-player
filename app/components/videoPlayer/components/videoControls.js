@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 
 import styles from '../styles.css';
 
+import { SeekBar } from './seekbar';
+
 import PlayIcon from '../assets/play-icon.svg';
 import PauseIcon from '../assets/pause-icon.svg';
 import FullscreenIcon from '../assets/fullscreen-icon.svg';
@@ -62,9 +64,9 @@ export class VideoControls extends React.Component {
     return (
       <div className={styles.videoControls}>
         <PlayPauseIcon className={styles.controlsButton} onClick={this.togglePause} />
-        <div className={styles.spacer} />
+        <SeekBar video={this.props.video} />
         <div className={styles.levels}>
-          <button className={styles.level} onClick={() => this.changeLevel(-1)}>Auto</button> /* -1 level is Auto in HLS.js */
+          <button className={styles.level} onClick={() => this.changeLevel(-1)}>Auto</button>
           {levels}
         </div>
         <FullscreenToggleButton className={styles.controlsButton} onClick={this.props.onToggleFullscreen} />
