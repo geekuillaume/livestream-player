@@ -1,4 +1,5 @@
 .container {
+  margin-top: 20px;
   border: 1px solid black;
 }
 
@@ -44,14 +45,17 @@
   flex-direction: column;
   justify-content: center;
 }
+
 .seekbar {
-  background-color: #e6000e;
+  background-color: #E6000E;
   border-radius: 3px;
   height: 5px;
   position: relative;
   cursor: pointer;
   flex: 1;
+  margin: 0 10px;
 }
+
 .seekbarButton {
   width: 10px;
   height: 10px;

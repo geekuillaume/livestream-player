@@ -27,12 +27,10 @@ export class AccountSelector extends React.Component {
     const { fields: { accountId }, handleSubmit } = this.props;
 
     return (
-      <form className={styles.container} onSubmit={handleSubmit(this.onSubmit)}>
-        <div className={styles.inputContainer}>
-          <label>Account Id: </label>
-          <input type="text" className={styles.input} {...accountId} required />
-        </div>
-        <button type="submit">Load Account</button>
+      <form className={styles.inputContainer} onSubmit={handleSubmit(this.onSubmit)}>
+        <label className={styles.label}>Account Id: </label>
+        <input type="text" className={styles.input} {...accountId} required />
+        <button type="submit" className={styles.submitButton}>Load Account</button>
       </form>
     );
   }

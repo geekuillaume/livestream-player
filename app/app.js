@@ -25,15 +25,11 @@ import 'sanitize.css/sanitize.css';
 const initialState = {};
 const store = configureStore(initialState);
 
-import { Selector } from 'components/selector';
-import { VideoPlayer } from 'components/videoPlayer';
+import { DemoApp } from 'components/demoApp';
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>
-      <Selector />
-      <VideoPlayer />
-    </div>
+    <DemoApp />
   </Provider>,
   document.getElementById('app')
 );

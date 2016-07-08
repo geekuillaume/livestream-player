@@ -35,15 +35,13 @@ export class EventSelector extends React.Component {
     ));
 
     return (
-      <form className={styles.container} onSubmit={handleSubmit(this.onSubmit)}>
-        <div className={styles.inputContainer}>
-          <label>Event: </label>
-          <select {...eventId} required>
-            <option></option>
-            {eventsOptions}
-          </select>
-        </div>
-        <button type="submit">Load Event</button>
+      <form className={styles.inputContainer} onSubmit={handleSubmit(this.onSubmit)}>
+        <label className={styles.label}>Event: </label>
+        <select {...eventId} className={styles.input} required>
+          <option></option>
+          {eventsOptions}
+        </select>
+        <button type="submit" className={styles.submitButton}>Load Event</button>
       </form>
     );
   }

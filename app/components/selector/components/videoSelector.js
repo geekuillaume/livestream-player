@@ -43,15 +43,13 @@ export class VideoSelector extends React.Component {
     }
 
     return (
-      <form className={styles.container} onSubmit={handleSubmit(this.onSubmit)}>
-        <div className={styles.inputContainer}>
-          <label>Video: </label>
-          <select {...videoId} required>
-            <option></option>
-            {videoOptions}
-          </select>
-        </div>
-        <button type="submit">Play Video</button>
+      <form className={styles.inputContainer} onSubmit={handleSubmit(this.onSubmit)}>
+        <label className={styles.label}>Video: </label>
+        <select {...videoId} required className={styles.input}>
+          <option></option>
+          {videoOptions}
+        </select>
+        <button type="submit" className={styles.submitButton}>Play Video</button>
       </form>
     );
   }

@@ -1,3 +1,19 @@
-.container {
-  border: 1px solid black;
+.inputContainer {
+  border-top: 1px solid rgb(187, 187, 187);
+  padding: 10px 0;
+}
+
+.input {
+  border: 1px rgb(187, 187, 187) solid;
+}
+
+.submitButton {
+  border: 1px rgb(187, 187, 187) solid;
+  border-radius: 2px;
+  margin-left: 10px;
+}
+
+.label {
+  display: inline-block;
+  width: 130px;
 }

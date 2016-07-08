@@ -23,7 +23,6 @@ export class Selector extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <p>Choose a video !</p>
         <AccountSelector />
         {this.props.account ? <EventSelector /> : false}
         {this.props.event ? <VideoSelector /> : false}
