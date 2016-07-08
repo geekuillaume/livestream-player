@@ -9,6 +9,7 @@ const initialState = {
 const LOAD_ACCOUNT = 'livestreamPlayer/event/loadAccount';
 const LOAD_EVENT = 'livestreamPlayer/event/loadEvent';
 const LOAD_VIDEO = 'livestreamPlayer/event/loadVideo';
+const LOAD_CURRENT = 'livestreamPlayer/event/loadCurrent';
 
 export function loadAccount(accountId) {
   return {
@@ -27,6 +28,11 @@ export function loadEvent(eventId, accountId) {
 }
 
 export function loadVideo(videoId, eventId, accountId) {
+  if (videoId === 'currentStream') {
+    return {
+      type: LOAD_CURRENT,
+    };
+  }
   return {
     type: LOAD_VIDEO,
     payload: fetch(`${config.APIUrl}/accounts/${accountId}/events/${eventId}/videos/${videoId}`).then(checkOk()).then(bodyToJson()),
@@ -50,4 +56,11 @@ export const eventReducer = typeToReducer({
     FULFILLED: (state, { payload }) => ({ ...state, video: payload, videoError: false }),
     REJECTED: (state, { error }) => ({ ...state, videoError: error }),
   },
+  [LOAD_CURRENT]: (state) => ({ ...state,
+    videoId: state.event.stream_info.live_video_post_id,
+    video: { // We need the m3u8 url from the parent object because the API is returning null inside the child object
+      ...state.event.stream_info.live_video_post,
+      m3u8_url: state.event.stream_info.m3u8_url,
+    },
+  }),
 }, initialState);

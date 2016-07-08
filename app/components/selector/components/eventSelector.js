@@ -31,7 +31,7 @@ export class EventSelector extends React.Component {
     const { fields: { eventId }, handleSubmit } = this.props;
 
     const eventsOptions = this.props.events.map((event) => (
-      <option value={event.id} key={event.id}>{event.full_name}</option>
+      <option value={event.id} key={event.id}>{event.id} - {event.full_name}</option>
     ));
 
     return (

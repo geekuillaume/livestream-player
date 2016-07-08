@@ -64,7 +64,7 @@ export class VideoControls extends React.Component {
         <PlayPauseIcon className={styles.controlsButton} onClick={this.togglePause} />
         <div className={styles.spacer} />
         <div className={styles.levels}>
-          <button className={styles.level} onClick={() => this.changeLevel(-1)}>Auto</button>
+          <button className={styles.level} onClick={() => this.changeLevel(-1)}>Auto</button> /* -1 level is Auto in HLS.js */
           {levels}
         </div>
         <FullscreenToggleButton className={styles.controlsButton} onClick={this.props.onToggleFullscreen} />
