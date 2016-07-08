@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import styles from '../styles.css';
 
 import { SeekBar } from './seekbar';
+import { VideoSettings } from './videoSettings';
 
 import PlayIcon from '../assets/play-icon.svg';
 import PauseIcon from '../assets/pause-icon.svg';
@@ -35,10 +36,6 @@ export class VideoControls extends React.Component {
     video.addEventListener('play', () => this.forceUpdate());
   }
 
-  changeLevel = (level) => {
-    this.props.hls.nextLevel = level;
-  }
-
   togglePause = () => {
     if (this.props.video.paused) {
       this.props.video.play();
@@ -52,11 +49,6 @@ export class VideoControls extends React.Component {
       return false;
     }
 
-    // If we don't have the levels yet, don't show anything
-    const levels = (this.props.hls.levels || []).map((level, i) => (
-      <button className={styles.level} onClick={() => this.changeLevel(i)} key={i}>{level.width} x {level.height}</button>
-    ));
-
     // Choosing the right icon depending on the state of the video
     const PlayPauseIcon = this.props.video.paused ? PlayIcon : PauseIcon;
     const FullscreenToggleButton = document.fullscreenElement ? ExitFullscreenIcon : FullscreenIcon;
@@ -65,10 +57,7 @@ export class VideoControls extends React.Component {
       <div className={styles.videoControls}>
         <PlayPauseIcon className={styles.controlsButton} onClick={this.togglePause} />
         <SeekBar video={this.props.video} />
-        <div className={styles.levels}>
-          <button className={styles.level} onClick={() => this.changeLevel(-1)}>Auto</button>
-          {levels}
-        </div>
+        <VideoSettings hls={this.props.hls} />
         <FullscreenToggleButton className={styles.controlsButton} onClick={this.props.onToggleFullscreen} />
       </div>
     );
