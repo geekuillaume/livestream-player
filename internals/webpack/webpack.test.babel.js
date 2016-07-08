@@ -9,11 +9,16 @@ const modules = [
   'node_modules',
 ];
 
+const babelQuery = {
+  plugins: ['transform-decorators-legacy'],
+};
+
 module.exports = {
   devtool: 'inline-source-map',
   isparta: {
     babel: {
       presets: ['es2015', 'react', 'stage-0'],
+      plugins: ['transform-decorators-legacy'],
     },
   },
   module: {
@@ -42,6 +47,16 @@ module.exports = {
       { test: /\.js$/,
         loader: 'babel',
         exclude: [/node_modules/],
+        query: babelQuery,
+      }, {
+        test: /\.svg$/,
+        loaders: [
+          {
+            loader: 'babel',
+            query: babelQuery,
+          },
+          'react-svg',
+        ],
       },
       { test: /\.jpe?g$|\.gif$|\.png$/i,
         loader: 'null-loader',

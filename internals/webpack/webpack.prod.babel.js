@@ -39,6 +39,11 @@ module.exports = require('./webpack.base.babel')({
       clearMessages: true,
     }),
   ],
+
+  babelQuery: {
+    plugins: ['transform-decorators-legacy'],
+  },
+
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

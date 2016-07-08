@@ -13,6 +13,7 @@ module.exports = (config) => {
 
     autoWatch: false,
     singleRun: true,
+    failOnEmptyTestSuite: false,
 
     client: {
       mocha: {
